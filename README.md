@@ -74,7 +74,7 @@ scp fir_accel.bit fir_accel.hdf fir_accel.hdf fir_accel.hwh fir_accel.ipynb xili
 Open a web browser and navigate to the Jupyter Notebook, for example:
 
 ```shell
-http://192.168.1.119:9090/notebooks/fir_accel/fir_accel.ipynb
+http://PYNQ:9090/notebooks/fir_accel/fir_accel.ipynb
 ```
 
 Follow the instructions in the notebook
