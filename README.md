@@ -10,3 +10,71 @@ The following modification to the original project:
 - Created a `makefile` similar to the base design in the PYNQ Z1 repository
   - https://github.com/Xilinx/PYNQ/tree/image_v2.5/boards/Pynq-Z1/base
 
+
+
+# Building Overlay
+
+The Xilinx Vivado settings script will need to be source for this to work.  For example
+
+```shell
+source /tools/Xilinx/Vivado/2019.1/settings64.sh
+```
+
+Clone repo and build project:
+
+```shell
+git clone https://github.com/odelayIO/PYNQ-Z1-FIR-Acceleration.git
+cd PYNQ-Z1-FIR-Acceleration
+make all
+```
+
+If everything was successful, the following message will be displayed on the terminal:
+
+```shell
+Built fir_accel successfully!
+```
+
+
+
+# Running on PYNQ Z1 Board
+
+The following output files will be created in the base directory:
+
+```shell
+drwxrwxr-x 6 sdr sdr    4096 Nov 14 10:08 .
+drwxrwxr-x 6 sdr sdr    4096 Nov 14 10:01 ..
+-rw-rw-r-- 1 sdr sdr    1344 Nov 14 10:01 build_bitstream.tcl
+-rw-rw-r-- 1 sdr sdr     496 Nov 14 10:01 check_fir_accel.tcl
+drwxrwxr-x 8 sdr sdr    4096 Nov 14 10:08 fir_accel
+-rw-rw-r-- 1 sdr sdr   47767 Nov 14 10:01 fir_accel_bd.tcl
+-rw-rw-r-- 1 sdr sdr 4045677 Nov 14 10:08 fir_accel.bit
+-rw-rw-r-- 1 sdr sdr  475114 Nov 14 10:08 fir_accel.hdf
+-rw-rw-r-- 1 sdr sdr  299889 Nov 14 10:03 fir_accel.hwh
+-rw-rw-r-- 1 sdr sdr  438000 Nov 14 10:01 fir_accel.ipynb
+-rw-rw-r-- 1 sdr sdr   12076 Nov 14 10:01 fir_accel.xdc
+drwxrwxr-x 8 sdr sdr    4096 Nov 14 10:01 .git
+-rw-rw-r-- 1 sdr sdr     951 Nov 14 10:03 makefile
+drwxrwxr-x 2 sdr sdr    4096 Nov 14 10:03 NA
+-rw-rw-r-- 1 sdr sdr     661 Nov 14 10:01 README.md
+-rw-rw-r-- 1 sdr sdr     653 Nov 14 10:03 vivado_26659.backup.jou
+-rw-rw-r-- 1 sdr sdr    2848 Nov 14 10:03 vivado_26659.backup.log
+-rw-rw-r-- 1 sdr sdr     659 Nov 14 10:03 vivado_26710.backup.jou
+-rw-rw-r-- 1 sdr sdr   75406 Nov 14 10:08 vivado_26710.backup.log
+-rw-rw-r-- 1 sdr sdr     658 Nov 14 10:08 vivado.jou
+-rw-rw-r-- 1 sdr sdr     754 Nov 14 10:08 vivado.log
+drwxrwxr-x 2 sdr sdr    4096 Nov 14 10:08 .Xil
+```
+
+Now upload the following files to the PYNQ Z1 Board:
+
+```shell
+scp fir_accel.bit fir_accel.hdf fir_accel.hdf fir_accel.hwh fir_accel.ipynb xilinx@PYNQ:/home/xilinx/jupyter_notebooks/fir_accel
+```
+
+Open a web browser and navigate to the Jupyter Notebook, for example:
+
+```shell
+http://192.168.1.119:9090/notebooks/fir_accel/fir_accel.ipynb
+```
+
+Follow the instructions in the notebook
