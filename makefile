@@ -25,12 +25,10 @@ check_timing:
 #	vivado -mode batch -source build_$(overlay_name)_dsa.tcl -notrace
 
 clean:
-	rm -rf $(overlay_name) *.jou *.log NA
+	rm -rf $(overlay_name) *.jou *.log NA *.bit *.hwh *.xsa .Xil
 
 upload:
 	scp ${overlay_name}.bit \
-  ${overlay_name}.hdf \
-	${overlay_name}.hdf \
 	${overlay_name}.hwh \
 	${overlay_name}.ipynb xilinx@PYNQ:/home/xilinx/jupyter_notebooks/fir_accel
 
