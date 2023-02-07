@@ -17,12 +17,12 @@ launch_runs impl_1 -to_step write_bitstream -jobs 8
 wait_on_run impl_1
 
 # This hardware definition file will be used for microblaze projects
-file mkdir ./${overlay_name}/${overlay_name}.sdk
-write_hwdef -force  -file ./${overlay_name}/${overlay_name}.sdk/${overlay_name}.hdf
-file copy -force ./${overlay_name}/${overlay_name}.sdk/${overlay_name}.hdf .
+write_hw_platform -fixed -include_bit -force -file ./${overlay_name}_wrapper.xsa
+validate_hw_platform ./${overlay_name}.xsa
 
-# move and rename bitstream to final location
+# copy nd rename bitstream to final location
 file copy -force ./${overlay_name}/${overlay_name}.runs/impl_1/${design_name}_wrapper.bit ${overlay_name}.bit
 
+
 # copy hwh files
-file copy -force ./${overlay_name}/${overlay_name}.srcs/sources_1/bd/${design_name}/hw_handoff/${design_name}.hwh ${overlay_name}.hwh
+file copy -force ./${overlay_name}/${overlay_name}.gen/sources_1/bd/${design_name}/hw_handoff/${design_name}.hwh ${overlay_name}.hwh
