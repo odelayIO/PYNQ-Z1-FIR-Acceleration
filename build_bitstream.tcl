@@ -17,7 +17,7 @@ launch_runs impl_1 -to_step write_bitstream -jobs 8
 wait_on_run impl_1
 
 # This hardware definition file will be used for microblaze projects
-write_hw_platform -fixed -include_bit -force -file ./${overlay_name}_wrapper.xsa
+write_hw_platform -fixed -include_bit -force -file ./${overlay_name}.xsa
 validate_hw_platform ./${overlay_name}.xsa
 
 # copy nd rename bitstream to final location
